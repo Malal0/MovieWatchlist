@@ -1,8 +1,16 @@
 export default class Movie {
     constructor(data) {
-        Object.assign(this, data);
-        this.title = "";
-        this.rating = "";
+        this.image = data.Poster;
+        this.title = data.Title;
+        this.rating = data.imdbRating;
+        this.duration = data.Runtime;
+        this.genres = data.Genre;
+        this.description = data.Plot;
+        this.addedToWatchlist = false;
+    }
+
+    toggleWatchlist() {
+        this.addedToWatchlist = !this.addedToWatchlist;
     }
 
     getMovieHtml() {
