@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>Movie Watchlist</title>
+    <link rel="stylesheet" href="/index.css" />
+    <script src="/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <ul class="nav-list container">
+                <li>
+                    <a class="nav-link current" href="#">Find your film</a>
+                </li>
+                <li>
+                    <a class="nav-link" target="_blank" href="/watchlist.html">My Watchlist</a>
+                </li>
+            </ul>
+            <div class="search-container container">
+                <i class="fa-solid fa-search"></i>
+                <input class="search-input" id="search-input" type="text" placeholder="Search for a movie" />
+                <button class="search-btn">Search</button>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="movies">
+            <div class="movie-content">
+                <img class="movie-art" src="https://g.christianbook.com/g/slideshow/7/795810/main/795810_1_ftc.jpg"
+                    alt="movie cover art" />
+                <div>
+                    <p class="movie-title">Jonah</p>
+                    <p class="movie-rating">
+                        <icon class="fa-solid fa-star"></icon>
+                        8.1
+                    </p>
+                </div>
+                <div>
+                    <p class="movie-duration">120min</p>
+                    <p class="movie-genres">Action, Drama, Sci-fi</p>
+                    <button class="toggle-watchlist">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <p>Start exploring</p>
+                    </button>
+                </div>
+                <p class="movie-genres">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti doloremque
+                    quas debitis maxime molestiae harum accusamus sapiente placeat fuga possimus expedita temporibus,
+                    non unde et?</p>
+            </div>
+            <div class="movie-content">
+                <img class="movie-art"
+                    src="https://s3-eu-west-1.amazonaws.com/static.clcbookshops.com/_CLCUKRetail/images/products/large/276.jpg"
+                    alt="movie cover art" />
+                <div>
+                    <p class="movie-title">Jonah</p>
+                    <p class="movie-rating">
+                        <icon class="fa-solid fa-star"></icon>
+                        8.1
+                    </p>
+                </div>
+                <div>
+                    <p class="movie-duration">120min</p>
+                    <p class="movie-genres">Action, Drama, Sci-fi</p>
+                    <button class="toggle-watchlist">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <p>Start exploring</p>
+                    </button>
+                </div>
+                <p class="movie-genres">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti doloremque
+                    quas debitis maxime molestiae harum accusamus sapiente placeat fuga possimus expedita temporibus,
+                    non unde et?</p>
+            </div>
+            <div class="movie-content">
+                <img class="movie-art"
+                    src="https://m.media-amazon.com/images/M/MV5BODk3NzA1MjI2M15BMl5BanBnXkFtZTcwMjg4NDUzMQ@@._V1_FMjpg_UX1000_.jpg"
+                    alt="movie cover art" />
+                <div>
+                    <p class="movie-title">Jonah</p>
+                    <p class="movie-rating">
+                        <icon class="fa-solid fa-star"></icon>
+                        8.1
+                    </p>
+                </div>
+                <div>
+                    <p class="movie-duration">120min</p>
+                    <p class="movie-genres">Action, Drama, Sci-fi</p>
+                    <button class="toggle-watchlist">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <p>Start exploring</p>
+                    </button>
+                </div>
+                <p class="movie-genres">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti doloremque
+                    quas debitis maxime molestiae harum accusamus sapiente placeat fuga possimus expedita temporibus,
+                    non unde et?</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+
+<!--
+       ⬇ No Search State ⬇
+
+        <div class="default-content-container" id="content-container">
+            <div class="default-content">
+                <i class="fa-solid fa-film"></i>
+                <p>Start exploring</p>
+            </div>
+        </div>
+-->
+<!--
+       ⬇ Succesful Search State ⬇
+
+-->
+<!--
+       ⬇ Unsuccesful Search State ⬇
+
+        <div class="default-content-container" id="content-container">
+            <div class="default-content">
+                <p>Unable to find what you’re looking for. Please try another search.</p>
+            </div>
+        </div>
+-->
+<!--
+       ⬇ Empty Watchlist State ⬇
+
+        <div class="default-content-container" id="content-container">
+            <div class="default-content">
+                <p>Your watchlist is looking a little empty...</p>
+                <a href="/index.html">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Let's add some movies!
+                </a>
+            </div>
+        </div>
+-->
