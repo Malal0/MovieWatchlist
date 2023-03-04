@@ -6,6 +6,7 @@ export default class Movie {
         this.duration = data.Runtime;
         this.genres = data.Genre;
         this.description = data.Plot;
+        this.id = data.imdbID;
         this.addedToWatchlist = false;
     }
 
@@ -14,11 +15,11 @@ export default class Movie {
     }
 
     getMovieHtml() {
-        const { image, title, rating, duration, genres, description } = this;
+        const { image, title, rating, duration, genres, description, id } = this;
         return `
         <div class="movie-content">
             <img class="movie-art" src="${image}"
-                alt="movie cover art" />
+                alt="${title} cover art" />
             <div class="movie-grid-block-one">
                 <p class="movie-title">${title}</p>
                 <p class="movie-rating">
@@ -29,9 +30,9 @@ export default class Movie {
             <div class="movie-grid-block-two">
                 <p class="movie-duration">${duration}</p>
                 <p class="movie-genres">${genres}</p>
-                <button class="toggle-watchlist-btn">
+                <button class="toggle-watchlist-btn" data-imdbid="${id}">
                     <i class="fa-solid fa-circle-plus"></i>
-                    <p>Watchlist</p>
+                    Watchlist
                 </button>
             </div>
             <p class="movie-description">${description}</p>

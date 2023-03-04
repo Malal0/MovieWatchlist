@@ -194,6 +194,7 @@ header {
 
 .toggle-watchlist-btn .fa-circle-plus {
     font-size: 1.25em;
+    pointer-events: none;
 }
 
 .movie-description {
