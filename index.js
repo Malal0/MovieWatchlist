@@ -29,7 +29,12 @@ function getMovie(id) {
     fetch(`http://www.omdbapi.com/?apikey=beba8703&i=${id}`, { method: "GET" })
         .then(res => res.json())
         .then(data => {
-            apiSearchResults.push(new Movie(data));
+            const movie = new Movie(data);
+            if (watchListArray.filter(movie => movie.imdbID === id)[0]) {
+                // return watchListArray.filter(movie => movie.imdbID === id)[0]
+                movie.watchListed = true;
+            }
+            apiSearchResults.push(movie);
             main.innerHTML = renderMovies(apiSearchResults);
         })
 }
@@ -53,9 +58,9 @@ function handleClick(e) {
 function toggleWatchlistBtn(e) {
     const movie = apiSearchResults.filter(movie => movie.imdbID === e.target.dataset.imdbid)[0];
     console.log(movie);
-    if (watchListArray.includes(movie)) {
+    if (movie.watchListed) {
         movie.toggleWatchlist();
-        watchListArray = watchListArray.filter(obj => obj !== movie);
+        watchListArray = watchListArray.filter(obj => obj.imdbID !== movie.imdbID);
         e.target.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Watchlist";
         localStorage.setItem("watchlist", JSON.stringify(watchListArray))
     } else {
