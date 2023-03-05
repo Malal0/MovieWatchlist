@@ -1,5 +1,8 @@
+/////////////////////////////////////////////////////////////////////
+//      VARIABLES
+/////////////////////////////////////////////////////////////////////
+
 import Movie from "/Movie.js"
-// import { getMovie} from "/utils.js"
 const searchBtn = document.getElementById("search-btn");
 const searchInput = document.getElementById("search-input");
 const main = document.getElementById("main");
@@ -7,11 +10,14 @@ let apiSearchResults = [];
 let idArray = [];
 let watchListArray = JSON.parse(localStorage.getItem("watchlist")) || [];
 
-// localStorage.clear();
+/////////////////////////////////////////////////////////////////////
+//      FUNCTIONS
+/////////////////////////////////////////////////////////////////////
 
 function getMovies() {
     apiSearchResults = [];
     const search = searchInput.value ? `&s=${searchInput.value}` : '';
+    searchInput.value = "";
     fetch(`http://www.omdbapi.com/?apikey=beba8703${search}`, { method: "GET" })
         .then(res => res.json())
         .then(data => {
@@ -31,7 +37,6 @@ function getMovie(id) {
         .then(data => {
             const movie = new Movie(data);
             if (watchListArray.filter(movie => movie.imdbID === id)[0]) {
-                // return watchListArray.filter(movie => movie.imdbID === id)[0]
                 movie.watchListed = true;
             }
             apiSearchResults.push(movie);
@@ -49,15 +54,15 @@ function renderMovies(arr) {
 }
 
 function handleClick(e) {
-    if (e.target.dataset.imdbid) {
+    if (e.target === searchBtn && searchInput.value) {
+        getMovies();
+    } else if (e.target.dataset.imdbid) {
         toggleWatchlistBtn(e);
     }
-    console.log(apiSearchResults)
 }
 
 function toggleWatchlistBtn(e) {
     const movie = apiSearchResults.filter(movie => movie.imdbID === e.target.dataset.imdbid)[0];
-    console.log(movie);
     if (movie.watchListed) {
         movie.toggleWatchlist();
         watchListArray = watchListArray.filter(obj => obj.imdbID !== movie.imdbID);
@@ -71,9 +76,10 @@ function toggleWatchlistBtn(e) {
     }
 }
 
-searchBtn.addEventListener("click", getMovies);
-document.addEventListener("click", handleClick);
+searchInput.focus();
 
-/*
-Here is your key: beba8703 Please append it to all of your API requests, OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=beba8703
-*/
+/////////////////////////////////////////////////////////////////////
+//      EVENT LISTENER
+/////////////////////////////////////////////////////////////////////
+
+document.addEventListener("click", handleClick);

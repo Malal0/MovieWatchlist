@@ -1,8 +1,16 @@
+/////////////////////////////////////////////////////////////////////
+//      VARIABLES
+/////////////////////////////////////////////////////////////////////
+
 import Movie from "/Movie.js"
-// import { getMovie } from "/utils.js"
 const main = document.getElementById("main");
-let watchListOnPageLoad = JSON.parse(localStorage.getItem("watchlist")) || []; //<----  this holds the Movie objects
+let watchListOnPageLoad = JSON.parse(localStorage.getItem("watchlist")) || [];
 let watchListArray = JSON.parse(localStorage.getItem("watchlist")) || [];
+main.innerHTML = renderMovies();
+
+/////////////////////////////////////////////////////////////////////
+//      FUNCTIONS
+/////////////////////////////////////////////////////////////////////
 
 function renderMovies() {
     if (watchListArray.length) {
@@ -23,14 +31,11 @@ function renderMovies() {
 function handleClick(e) {
     if (e.target.dataset.imdbid) {
         toggleWatchlistBtn(e);
-        console.log(watchListArray);
     }
 }
 
 function toggleWatchlistBtn(e) {
     const movie = watchListOnPageLoad.filter(movie => movie.imdbID === e.target.dataset.imdbid)[0];
-    console.log(movie.imdbID);
-    // if (watchListArray.includes(movie)) {
     if (movie.watchListed) {
         movie.watchListed = false;
         e.target.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Watchlist";
@@ -44,9 +49,8 @@ function toggleWatchlistBtn(e) {
     }
 }
 
-document.addEventListener("click", handleClick);
-main.innerHTML = renderMovies();
+/////////////////////////////////////////////////////////////////////
+//      EVENT LISTENER
+/////////////////////////////////////////////////////////////////////
 
-/*
-Here is your key: beba8703 Please append it to all of your API requests, OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=beba8703
-*/
+document.addEventListener("click", handleClick);
