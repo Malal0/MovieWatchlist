@@ -11,11 +11,17 @@ export default class Movie {
     }
 
     toggleWatchlist() {
-        this.addedToWatchlist = !this.addedToWatchlist;
+        // this.addedToWatchlist = !this.addedToWatchlist;
+        return this;
     }
 
+    // movieIncluded() {
+    //     this.addedToWatchlist ? "<i class='fa-solid fa-circle-minus'></i>Remove" : "<i class='fa-solid fa-circle-plus'></i>Watchlist"
+    // }
+
+
     getMovieHtml() {
-        const { image, title, rating, duration, genres, description, id } = this;
+        const { image, title, rating, duration, genres, description, id, toggleWatchlist } = this;
         return `
         <div class="movie-content">
             <img class="movie-art" src="${image}"
@@ -30,7 +36,7 @@ export default class Movie {
             <div class="movie-grid-block-two">
                 <p class="movie-duration">${duration}</p>
                 <p class="movie-genres">${genres}</p>
-                <button class="toggle-watchlist-btn" data-imdbid="${id}">
+                <button class="toggle-watchlist-btn" data-imdbid="${id}" onclick="${toggleWatchlist}">
                     <i class="fa-solid fa-circle-plus"></i>
                     Watchlist
                 </button>
