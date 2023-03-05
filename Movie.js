@@ -1,47 +1,37 @@
 export default class Movie {
     constructor(data) {
-        this.image = data.Poster;
-        this.title = data.Title;
-        this.rating = data.imdbRating;
-        this.duration = data.Runtime;
-        this.genres = data.Genre;
-        this.description = data.Plot;
-        this.id = data.imdbID;
-        this.addedToWatchlist = false;
+        Object.assign(this, data)
+        this.watchListed = data.watchListed || false;
     }
 
     toggleWatchlist() {
-        // this.addedToWatchlist = !this.addedToWatchlist;
-        return this;
+        this.watchListed = !this.watchListed;
+        console.log(`added to watchist: ${this.watchListed}`);
     }
 
-    // movieIncluded() {
-    //     this.addedToWatchlist ? "<i class='fa-solid fa-circle-minus'></i>Remove" : "<i class='fa-solid fa-circle-plus'></i>Watchlist"
-    // }
-
-
     getMovieHtml() {
-        const { image, title, rating, duration, genres, description, id, toggleWatchlist } = this;
+        const { Poster, Title, imdbRating, Runtime, Genre, Plot, imdbID } = this;
+        const innerHtml = this.watchListed ? "<i class='fa-solid fa-circle-minus'></i>Remove" : "<i class='fa-solid fa-circle-plus'></i>Watchlist";
+        console.log(this.watchListed);
         return `
         <div class="movie-content">
-            <img class="movie-art" src="${image}"
-                alt="${title} cover art" />
+            <img class="movie-art" src="${Poster}"
+                alt="${Title} cover art" />
             <div class="movie-grid-block-one">
-                <p class="movie-title">${title}</p>
+                <p class="movie-title">${Title}</p>
                 <p class="movie-rating">
                     <icon class="fa-solid fa-star"></icon>
-                    ${rating}
+                    ${imdbRating}
                 </p>
             </div>
             <div class="movie-grid-block-two">
-                <p class="movie-duration">${duration}</p>
-                <p class="movie-genres">${genres}</p>
-                <button class="toggle-watchlist-btn" data-imdbid="${id}" onclick="${toggleWatchlist}">
-                    <i class="fa-solid fa-circle-plus"></i>
-                    Watchlist
+                <p class="movie-duration">${Runtime}</p>
+                <p class="movie-genres">${Genre}</p>
+                <button class="toggle-watchlist-btn" data-imdbid="${imdbID}">
+                    ${innerHtml}
                 </button>
             </div>
-            <p class="movie-description">${description}</p>
+            <p class="movie-description">${Plot}</p>
         </div>
         `
     }
