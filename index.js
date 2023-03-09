@@ -18,7 +18,7 @@ function getMovies() {
     apiSearchResults = [];
     const search = searchInput.value ? `&s=${searchInput.value}` : '';
     searchInput.value = "";
-    fetch(`http://www.omdbapi.com/?apikey=beba8703${search}`, { method: "GET" })
+    fetch(`https://www.omdbapi.com/?apikey=beba8703${search}`, { method: "GET" })
         .then(res => res.json())
         .then(data => {
             idArray = data.Search.map(movie => movie.imdbID)
@@ -32,7 +32,7 @@ function getMovies() {
 }
 
 function getMovie(id) {
-    fetch(`http://www.omdbapi.com/?apikey=beba8703&i=${id}`, { method: "GET" })
+    fetch(`https://www.omdbapi.com/?apikey=beba8703&i=${id}`, { method: "GET" })
         .then(res => res.json())
         .then(data => {
             const movie = new Movie(data);
